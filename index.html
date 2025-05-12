@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Door Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background-color: #f3f3f3;
-      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      margin: 0;
     }
 
     .door-frame {
       position: relative;
-      width: 70vw;
-      aspect-ratio: 9 / 16;
-      max-width: 400px;
-      height: 70vh;
+      width: 90vw;
+      aspect-ratio: 2 / 3;
+      max-width: 330px;
+      max-height: 500px;
       perspective: 1000px;
     }
 
@@ -32,7 +30,6 @@
       top: 0;
       left: 0;
       z-index: 0;
-      object-fit: cover;
     }
 
     .content {
@@ -44,29 +41,33 @@
       height: 100%;
       padding: 10px;
       color: #333;
-      font-size: 14px;
+      font-family: Arial, sans-serif;
+      font-size: 3.5vw;
+      box-sizing: border-box;
       background: transparent;
       overflow-y: auto;
-      text-align: left;
+      text-align: center;
     }
 
     .content h2 {
-      font-size: 24px;
+      margin-top: 40px;
+      font-size: 5vw;
       color: #6b3e26;
-      margin-top: 60px;
+      text-align: left;
     }
 
     .content p {
-      font-size: 15px;
       margin: 10px 0;
+      font-size: 3.5vw;
+      text-align: left;
     }
 
-    iframe.custom-map {
+    .content iframe {
       width: 100%;
-      height: 120px;
-      border: 2px solid #333;
-      border-radius: 8px;
+      height: 150px;
+      border: none;
       margin-top: 10px;
+      border-radius: 8px;
     }
 
     .door {
@@ -80,49 +81,76 @@
       transition: transform 1s ease-in-out;
       cursor: pointer;
       z-index: 2;
-      object-fit: cover;
     }
 
     .door.open {
       transform: rotateY(-100deg);
     }
+
+    iframe.custom-map {
+      text-align: left;
+      width: 70% !important;
+      height: 100px !important;
+      border: 2px solid #333;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    @media (min-width: 600px) {
+      .content {
+        font-size: 14px;
+      }
+
+      .content h2 {
+        font-size: 26px;
+      }
+
+      .content p {
+        font-size: 15px;
+      }
+    }
   </style>
 </head>
 <body>
-  <audio id="doorSound" src="squeak.mp3" preload="auto"></audio>
+<audio id="doorSound" src="squeak.mp3" preload="auto"></audio>
 
-  <div class="door-frame">
-    <!-- Text Content -->
-    <div class="content">
-      <h2>You're Invited!</h2>
-      <p>Please join us for the <br>housewarming ceremony</p>
-      <p><strong>Date:</strong> June 5th, 2025</p>
-      <p><strong>Time:</strong> 7:30 AM onwards</p>
-      <p><strong>Place:</strong> Barani Kudil, Ponmar</p>
+<div class="door-frame">
+  <!-- Invitation Content and Map -->
+  <div class="content">
+    <br/><br/><br/><br/><br/>
+    <h2>You're Invited!</h2>
+    <p>Please join us for the <br />housewarming ceremony</p>
+    <p><strong>Date:</strong> June 5th, 2025</p>
+    <p><strong>Time:</strong> 7:30 AM onwards</p>
+    <p><strong>Place:</strong> Barani Kudil, Ponmar</p>
+    <div style="text-align: left;">
       <iframe class="custom-map"
         src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d486.2321593520703!2d80.16928682533486!3d12.85249355326806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDUxJzA5LjQiTiA4MMKwMTAnMTAuNCJF!5e0!3m2!1sen!2sin!4v1746953387462!5m2!1sen!2sin"
         allowfullscreen=""
         loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-
-    <!-- Background -->
-    <img src="inner_walls.jfif" alt="Wall" class="background">
-
-    <!-- Clickable Door -->
-    <img src="door_only.png" alt="Door" class="door" id="door">
   </div>
 
-  <script>
-    const door = document.getElementById('door');
-    const doorSound = document.getElementById('doorSound');
-    door.addEventListener('click', () => {
-      door.classList.toggle('open');
-      doorSound.currentTime = 0;
-      doorSound.play().catch(e => {
-        console.log("Audio play blocked:", e);
-      });
+  <!-- Inner wall with door hole -->
+  <img src="inner_walls.jfif" alt="Background Wall" class="background">
+
+  <!-- Clickable Door -->
+  <img src="door_only.png" alt="Door" class="door" id="door">
+</div>
+
+<script>
+  const door = document.getElementById('door');
+  const doorSound = document.getElementById('doorSound');
+  door.addEventListener('click', () => {
+    door.classList.toggle('open');
+    doorSound.currentTime = 1;
+    doorSound.play().catch((e) => {
+      console.log("Audio play blocked:", e);
     });
-  </script>
+  });
+</script>
 </body>
 </html>
