@@ -12,15 +12,14 @@
       height: 100vh;
       margin: 0;
     }
-	.door-frame {
-	  position: relative;
-	  width: 60vw;         /* Scales with screen width */
-	  max-width: 270px;    /* Prevents it from growing too large on big screens */
-	  height: auto;        /* Keeps the image ratio */
-	  margin: auto;
-	  perspective: 1000px;
-	}
-	  
+
+    .door-frame {
+      position: relative;
+      width: 270px; /* adjust to your image size */
+      height: 500px;
+      perspective: 1000px;
+    }
+
     .background {
       width: 100%;
       height: 100%;
@@ -88,9 +87,8 @@
     .door.open {
       transform: rotateY(-100deg);
     }
-    
-    iframe.custom-map {
-      text-align: left;
+	iframe.custom-map {
+	  text-align: left;
       width: 70% !important;
       height: 100px !important;
       border: 2px solid #333;
@@ -102,13 +100,15 @@
     @media (max-width: 1024px) {
 	.door-frame {
 	  width: 50vw;
+	  max-width: 250px;
 	}
     }
 	
     /* For phones (width up to 600px) */
     @media (max-width: 600px) {
     .door-frame {
-	  width: 90vw;
+	  width: 80vw;
+	  max-width: 220px;
         }
     }
 
