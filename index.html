@@ -133,7 +133,7 @@
   const doorSound = document.getElementById('doorSound');
   door.addEventListener('click', () => {
     door.classList.toggle('open');
-    doorSound.currentTime = 0; // rewind to start
+    doorSound.currentTime = 1; // rewind to start
     doorSound.play().catch((e) => {
 		console.log("Audio play blocked:", e);
 	});
