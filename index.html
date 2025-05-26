@@ -14,6 +14,10 @@
       margin: 0;
       padding: 0;
     }
+    
+    body.loading #content {
+      display: none;
+    }
 
     .door-frame {
       position: relative;
@@ -120,7 +124,7 @@
     }
   </style>
 </head>
-<body>
+<body class="loading">
 <audio id="doorSound" src="sparkle.mp3" preload="auto"></audio>
 <div class="door-frame">
   <!-- Invitation Content and Map -->
@@ -156,6 +160,10 @@
     doorSound.play().catch((e) => {
       console.log("Audio play blocked:", e);
     });
+  });
+
+  window.addEventListener("load", function () {
+    document.body.classList.remove("loading");
   });
 </script>
 </body>
